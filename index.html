@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CapsWars | Official Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+
+background:#071427;
+overflow-x:hidden;
+color:white;
+
+}
+
+/* Animated Background */
+
+body::before{
+
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.12) 2px,transparent 3px),
+radial-gradient(circle at 80% 60%,rgba(255,255,255,.08) 2px,transparent 3px),
+radial-gradient(circle at 50% 90%,rgba(255,255,255,.08) 2px,transparent 3px),
+linear-gradient(180deg,#071427,#0d2744,#112d4e);
+background-size:250px 250px;
+animation:stars 50s linear infinite;
+z-index:-2;
+
+}
+
+@keyframes stars{
+
+from{
+background-position:0 0;
+}
+
+to{
+background-position:0 1000px;
+}
+
+}
+
+/* Floating Caps */
+
+.cap{
+
+position:fixed;
+font-size:45px;
+opacity:.12;
+animation:float 18s linear infinite;
+pointer-events:none;
+
+}
+
+.cap:nth-child(1){left:5%;top:15%;}
+.cap:nth-child(2){left:90%;top:25%;animation-duration:22s;}
+.cap:nth-child(3){left:15%;top:70%;animation-duration:16s;}
+.cap:nth-child(4){left:80%;top:80%;animation-duration:20s;}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px) rotate(0deg);
+
+}
+
+50%{
+
+transform:translateY(-40px) rotate(180deg);
+
+}
+
+100%{
+
+transform:translateY(0px) rotate(360deg);
+
+}
+
+}
+
+/* Navbar */
+
+nav{
+
+position:fixed;
+top:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(12px);
+z-index:1000;
+
+}
+
+nav h2{
+
+color:#FFD93D;
+font-size:30px;
+
+}
+
+nav ul{
+
+display:flex;
+list-style:none;
+gap:25px;
+
+}
+
+nav a{
+
+color:white;
+text-decoration:none;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#FFD93D;
+
+}
+
+/* Hero */
+
+header{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+
+}
+
+.hero{
+
+max-width:850px;
+
+}
+
+.hero img{
+
+width:320px;
+max-width:90%;
+animation:bounce 4s infinite;
+
+}
+
+@keyframes bounce{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+.hero h1{
+
+font-size:70px;
+margin-top:25px;
+background:linear-gradient(90deg,#ffae00,#ff4d6d,#7b61ff,#00d4ff,#00ff95);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+.hero h2{
+    
+font-size:40px;
+margin-top:25px;
+background:linear-gradient(90deg,#ffae00,#ff4d6d,#7b61ff,#00d4ff,#00ff95);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+.hero p{
+
+font-size:22px;
+margin:20px auto;
+line-height:1.8;
+max-width:700px;
+color:#ddd;
+
+}
+
+.buttons{
+
+margin-top:35px;
+
+}
+
+.btn{
+
+display:inline-block;
+padding:15px 35px;
+margin:10px;
+border-radius:50px;
+text-decoration:none;
+font-size:19px;
+font-weight:600;
+transition:.3s;
+
+}
+
+.play{
+
+background:#ff4d6d;
+color:white;
+box-shadow:0 0 25px #ff4d6d;
+
+}
+
+.learn{
+
+background:#FFD93D;
+color:#111;
+box-shadow:0 0 25px gold;
+
+}
+
+.btn:hover{
+
+transform:translateY(-5px) scale(1.08);
+
+}
+
+/* Sections */
+
+section{
+
+padding:100px 10%;
+
+}
+
+.title{
+
+text-align:center;
+font-size:45px;
+margin-bottom:50px;
+color:#FFD93D;
+
+}
+
+/* Cards */
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+transition:.4s;
+border:2px solid transparent;
+
+}
+
+.card:hover{
+
+transform:translateY(-12px);
+border-color:#FFD93D;
+box-shadow:0 0 30px rgba(255,217,61,.4);
+
+}
+
+.card h3{
+
+font-size:28px;
+margin-bottom:15px;
+color:#7de2ff;
+
+}
+
+.card p{
+
+line-height:1.8;
+color:#ddd;
+
+}
+
+/* Timeline */
+
+.timeline{
+
+display:flex;
+flex-direction:column;
+gap:30px;
+
+}
+
+.step{
+
+display:flex;
+align-items:flex-start;
+gap:20px;
+
+}
+
+.circle{
+
+width:60px;
+height:60px;
+border-radius:50%;
+background:#FFD93D;
+color:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:25px;
+font-weight:bold;
+flex-shrink:0;
+
+}
+
+.step p{
+
+font-size:20px;
+line-height:1.8;
+
+}
+
+.fade{
+
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+
+}
+
+.fade.show{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+nav ul{
+
+display:none;
+
+}
+
+.title{
+
+font-size:35px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="cap">🧢</div>
+<div class="cap">🧢</div>
+<div class="cap">🧢</div>
+<div class="cap">🧢</div>
+
+<nav>
+
+<h2>CapsWars</h2>
+
+<ul>
+
+<li><a href="#about">About</a></li>
+
+<li><a href="#rules">Rules</a></li>
+
+<li><a href="#features">Features</a></li>
+
+<li><a href="#tips">Tips</a></li>
+
+</ul>
+
+</nav>
+
+<header>
+
+<div class="hero">
+
+<h2>
+    SPECIAL THANKS TO <a href="https://github.com/Chemist6612">CHEMIST6612</a>  FOR MAKING THIS PROJECT POSSIBLE
+</h2>
+
+<h1>CAPSWARS</h1>
+
+<p>
+
+Welcome to <b>CapsWars</b>, the fast-paced battle where bottle caps become warriors! Swipe, dodge, collide, and race your opponent to victory in an exciting real-time challenge.
+
+</p>
+
+<div class="buttons">
+
+<a class="btn play" href="#">🎮 Play Now</a>
+
+<a class="btn learn" href="#about">📖 Learn the Game</a>
+
+</div>
+
+</div>
+
+</header>
+
+<section id="about" class="fade">
+
+<h2 class="title">🎮 About CapsWars</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>⚡ Fast Gameplay</h3>
+
+<p>
+CapsWars is a game where you play agianst a bot to gain Elo. When your Elo is higher the bot gets better and better.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>💥 Epic Collisions</h3>
+
+<p>
+Your caps can collide with your opponent's caps! Every collision can change the outcome of the game, making each match unique.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🏆 Goal</h3>
+
+<p>
+Move all three of your caps from your starting side to the opposite side before your opponent does.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="rules" class="fade">
+
+<h2 class="title">📖 How To Play</h2>
+
+<div class="timeline">
+
+<div class="step">
+
+<div class="circle">1</div>
+
+<p>
+The game begins with <b>3 caps on the left</b> (your side) and <b>3 caps on the right</b> (your opponent's side).
+</p>
+
+</div>
+
+<div class="step">
+
+<div class="circle">2</div>
+
+</div>
+
+<div class="step">
+
+<div class="circle">3</div>
+
+<p>
+When caps collide, the race becomes even more exciting! Use quick reactions and smart timing to gain the advantage.
+</p>
+
+</div>
+
+<div class="step">
+
+<div class="circle">4</div>
+
+<p>
+The first to successfully move all three caps to the opposite side wins the battle! 🎉
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="features" class="fade">
+
+<h2 class="title">⭐ Game Features</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>🎯 Easy to Learn</h3>
+<p>Simple controls make it easy for anyone to jump into the action.</p>
+</div>
+
+<div class="card">
+<h3>🧠 Strategic</h3>
+<p>Winning isn't just about speed—timing and positioning matter too.</p>
+</div>
+
+<div class="card">
+<h3>😂 Chaotic Fun</h3>
+<p>Real-time movement and cap collisions create hilarious, unpredictable moments.</p>
+</div>
+
+<div class="card">
+<h3>📱 Mobile Friendly</h3>
+<p>Designed to play smoothly on phones, tablets, and desktops.</p>
+</div>
+
+</div>
+
+</section> 
+<section id="tips" class="fade">
+
+<h2 class="title">💡 Pro Tips</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>⚡ Stay Fast</h3>
+
+<p>
+Quick swipes can give you the lead, but don't rush without thinking!
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>💥 Watch Collisions</h3>
+
+<p>
+Keep an eye on your opponent. A single collision can completely change the match.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🎯 Plan Ahead</h3>
+
+<p>
+Choose which cap to move first. Smart decisions often beat pure speed.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="fade">
+
+<h2 class="title">🏆 Victory</h2>
+
+<div class="card" style="max-width:900px;margin:auto;text-align:center;">
+
+<h3 style="font-size:35px;">Win the Battle!</h3>
+
+<p style="font-size:20px;line-height:2;margin-top:20px;">
+
+Your mission is simple:
+Move all <b>3 of your caps</b> from your starting side to the opposite side before your opponent.
+
+Remember...
+
+<b>Your moves, make the win.</b>
+
+Collisions, quick reactions, and smart timing make every game different.
+
+Will you become the next <span style="color:#FFD93D;">CapsWars Champion?</span> 🏆
+
+</p>
+
+</div>
+
+</section>
+
+<section class="fade">
+
+<h2 class="title">🌟 Why Players Love CapsWars</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🔥 Exciting Every Match</h3>
+
+<p>
+No two games are the same thanks to real-time movement and unpredictable collisions.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>👨‍👩‍👧 Play Together</h3>
+
+<p>
+Challenge your friends and see who has the fastest hands and the smartest strategy.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🚀 Easy to Start</h3>
+
+<p>
+Learn the basics in seconds and master advanced strategies over time.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2 style="color:#FFD93D;font-size:35px;">🎮 CapsWars</h2>
+
+<p style="margin-top:15px;font-size:18px;color:#ddd;">
+
+Built with love for players who enjoy speed, strategy, and a little bit of chaos.
+
+</p>
+
+<p style="margin-top:10px;color:#999;">
+
+© 2026 CapsWars
+
+</p>
+
+</footer>
+
+<style>
+
+footer{
+
+margin-top:80px;
+padding:60px 20px;
+text-align:center;
+background:#04101d;
+border-top:2px solid rgba(255,255,255,.08);
+
+}
+
+</style>
+
+<script>
+
+/* Fade Animation */
+
+const observer = new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+
+/* Floating Caps Generator */
+
+const emojis=["🧢","⭐","✨"];
+
+for(let i=0;i<25;i++){
+
+const e=document.createElement("div");
+
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+e.style.position="fixed";
+
+e.style.left=Math.random()*100+"vw";
+
+e.style.top=Math.random()*100+"vh";
+
+e.style.opacity=.15;
+
+e.style.fontSize=(15+Math.random()*25)+"px";
+
+e.style.pointerEvents="none";
+
+e.style.animation=`drift ${10+Math.random()*15}s linear infinite`;
+
+document.body.appendChild(e);
+
+}
+
+const style=document.createElement("style");
+
+style.innerHTML=`
+
+@keyframes drift{
+
+0%{
+
+transform:translateY(0px) rotate(0deg);
+
+}
+
+50%{
+
+transform:translateY(-35px) rotate(180deg);
+
+}
+
+100%{
+
+transform:translateY(0px) rotate(360deg);
+
+}
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+/* Navbar Background */
+
+window.addEventListener("scroll",()=>{
+
+const nav=document.querySelector("nav");
+
+if(window.scrollY>60){
+
+nav.style.background="rgba(0,0,0,.65)";
+
+}
+
+else{
+
+nav.style.background="rgba(0,0,0,.35)";
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
